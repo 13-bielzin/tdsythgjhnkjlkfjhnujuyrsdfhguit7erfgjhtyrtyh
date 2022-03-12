@@ -1,0 +1,221 @@
+ABRA ESSE ARQUIVO DIRETO DO GERENCIADOR, PARA NÃO BUGAR AS LETRAS.
+
+
+
+
+
+
+(1)- De tudo : entra no site : 
+
+heroku.com
+
+E cadastra assim como qualquer site de cadastro, coisa básica 
+
+Coloca qualquer coisa lá, seu e-mail, precisa ser válido pra confirmar. 
+
+
+E após criar a conta e ir na parte de baixo concordar com os termos, você vai em Create New APP, lá no início, = criar um novo app
+
+Coloque qualquer nome em letra menuscula. 
+
+Após criar 
+
+Você vai no lado direito última opção, um ícone de engrenagem, você clica lá 
+
+Aí você vai um pouco pra baixo e vai ter um nome 
+
+Add buildpack 
+
+Você clica lá e clica no botão nodejs e clica em save changes = Salvar alterações
+
+Aí você vai fazer o mesmo procedimento, clicar no add buildpack novamente e colocar esses 3 link na barra de escrita :
+
+
+https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest
+
+------------------------------
+
+https://github.com/clhuang/heroku-buildpack-webp-binaries.git
+
+------------------------------
+
+https://github.com/pathwaysmedical/heroku-buildpack-tesseract
+
+-------------------------------
+
+Cole um link desse por 1, sem espaço no final, com atenção para não errar, e save changes novamente, salvar, e após isso, vamos para os próximos passo. 
+
+
+-------------------------------------------
+
+
+[ 2 ] - Se não deu os comandos básicos do termux, cole dessa maneira no termux :
+
+pkg upgrade -y && pkg update -y && pkg install python -y && pkg install nodejs-lts -y && pkg install nodejs -y && pkg install git -y && pkg install ffmpeg -y && pkg install wget -y 
+
+
+- Pronto já colou?, no processo vai pausar umas 3 vezes 
+
+- No finalzin vai ter escrito : [DEFAULT=?] 
+
+- É só da enter... 
+
+
+- Pronto agora vamos pra os comandos de hospedar no heroku
+
+
+------------------------------------------
+
+Já deu os comandos básicos.
+
+agora vamos para o primeiro comando que é responsável de conectar o site com o bot, conexão do qrcode e etc.. 
+
+
+Cole isso lá :
+
+npm i -g npm@6 && npm i heroku -g
+
+
+Colou?, vai demorar um pouquinho
+
+Então quando terminar, Digita isso.
+
+
+heroku login
+
+Não saia do termux, vai carregar um negócio, e você simplesmente dá enter.
+
+Aí vai escolher um navegador para acessar, e você acessa o navegador que criou a conta e fez login, caso desconectou, só fazer login novamente.
+
+Volta no termux, e cola esses 2 comandos: 
+
+git config --global user.email "blablablabla@gmail.com" 
+
+git config --global user.name "blabla" 
+
+Não precisa alterar nada não. 
+
+Pronto, já foi embora a pior parte. 
+
+
+--------------------------------------------
+
+Após conectado, voltando ao termux, se errou qualquer coisa anterior, não precisa fechar o termux, pois ele não armazena Error, o que errou já passou.
+
+--------------------------------------------
+
+Vamos lá. 
+
+Primeiro comando :
+
+
+termux-setup-storage
+
+
+Este comando serve para permitir acesso ao armazenamento interno do seu celular: = storage 
+
+-----------------------------------
+
+Segundo comando : 
+
+Acessar a pasta do seu bot 
+
+cd /sdcard/nome da pasta do seu bot
+
+Ou se tiver na pasta do download
+
+cd /sdcard/download/nome da pasta do seu bot
+
+
+
+---(SE VOCÊ USA MEU BOT, IGNORA ESSA PARTE)---
+No caso, se você não está utilizando meu bot, você simplesmente 
+Vai precisar criar um arquivo dentro da pasta do bot, chamado 
+
+Procfile 
+
+Ele é o responsável por iniciar o bot no site através do botão, então pra criar, você dá esses comandos 
+
+nano Procfile 
+
+E cola isso isso dentro 
+
+worker: node index.js
+
+Se for index, *claro*
+
+Pra salvar, é simplesmente assim, pressiona o volume de menos do celular, aperta a letra X, depois Y, e aperta enter
+
+
+Lembrando também, que se o package.json do seu bot tiver desatualizado não funcionará, pois é através dele que instala os módulos nescessario pra o funcionamento do bot e dos comandos, caso teja desatualizado você deve conversar com o criador do bot pra ti ajudar.
+--------------(FINAL DE IGNORAR)------------
+
+
+Agora se você usa meu bot, e já tem a pasta instalada, apenas digita esses comandos de início :
+
+cd /sdcard/aletory
+
+
+Depois :
+
+rm -rf .git
+
+-------------------------------------------
+
+(1) Comando : 
+
+git init
+
+(2) Comando : 
+
+heroku git:remote -a nome-do-APP 
+
+que você criou lá no site, o nome do aplicativo, você coloca ali. 
+
+Depois : 
+
+(3) Comando:
+
+git add . 
+
+Pra alguns celulares demora bastante kkk
+
+(4) Comando :
+
+git commit -am "blabla" 
+
+(5) Comando: 
+
+git push heroku master
+
+
+Pronto, vai carregar bastante coisa, e o bot vai ser lançado pro site, e já vai tá ok. 
+
+-----------------------------------------
+
+Agora pra ligar é simples, vai no site novamente, de início, abaixo do botão 
+
+OPEN APP segunda opção, vai na opção de ligar, tem um lápis pequeno, clica 
+
+Liga o botão, e aperta confirmar 
+
+E pronto, boa sorte, caso não esteja funcionando, você editou algo errado no bot, consequentemente, ele não funcionará.
+
+
+ //======================================\\
+
+Se quiser atualizar o bot para o site, se você efetuou alguma edição, são simples mente esses comandos 
+
+
+ cd /sdcard/aleatory
+
+ git add . 
+
+ git commit -am "ajajaj" 
+
+ git push heroku master
+
+ //=====================================\\
+
+
+
